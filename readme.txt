@@ -4,6 +4,8 @@ I implemented an abstractive text summarization system using the T5-small pretra
 Transformers library. The goal was to generate concise and meaningful summaries from longer input texts.
 To achieve this, I fine-tuned the T5-small model on a custom dataset containing 10,000 text-summary pairs, 
 with 8,000 examples for training and 2,000 for testing.
+The project Includes a FastAPI backend for serving the model and a web app for real-time summarization 
+through a simple user interface.
 
 
 How to Run the Project ?
