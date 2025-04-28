@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summarization System</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+    }
+    
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 40px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        text-align: center;
+        color: #0077cc;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    
+    button {
+        background-color: #0077cc;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    button:hover {
+        background-color: #005fa3;
+    }
+    
+    #summary-output {
+        margin-top: 20px;
+        background: #cdcdce57;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccccccad;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1 style="text-align: center; font-size: 16; font-weight: bold;">Text Summarizer.AI</h1>
+        <p style="font-weight: bold;"> Enter your Article below, and our system will provide a concise summary!</p>
+        <form id="summarization-form">
+            <textarea id="text-input" placeholder="Enter your Article here... " required style="resize: none;"></textarea>
+            <button type="submit">Summarize</button>
+        </form>
+        <h3 style="text-align: left; font-weight: bold; ">Text Summary:</h3>
+        <div id="summary-output">
+
+            <p id="summary-text"></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("summarization-form").addEventListener("submit", async(e) => {
+            e.preventDefault();
+            const dialogue = document.getElementById("text-input").value;
+            const response = await fetch("/summarize/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    dialogue
+                }),
+            });
+            const data = await response.json();
+            document.getElementById("summary-text").innerText = data.summary;
+        });
+    </script>
+</body>
+
+</html>

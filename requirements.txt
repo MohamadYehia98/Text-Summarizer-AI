@@ -1,0 +1,9 @@
+transformers
+torch
+uvicorn
+jinja2
+fastapi
+gdown
+sentencepiece
+numpy
+tokenizers
